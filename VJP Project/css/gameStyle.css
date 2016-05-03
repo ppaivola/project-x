@@ -1,0 +1,78 @@
+body {
+	color: #191919;
+	font-size: 90%;
+	font-family: 'Open Sans', sans-serif;
+	line-height: 1.5;
+	text-align: center;
+	margin: 0 auto;
+	width: 65%;
+	clear: both;
+	background: url(../images/skipBack.png) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+     border: 2px, solid, #E5E5E5;
+}
+
+a {
+	text-decoration:  none;
+	color: inherit;
+
+}
+
+.mainArticle {
+	width: 65%;
+	float: left;
+	background-color: #FFF;
+	color: #191919;
+	margin-bottom: 2%;
+	font-size: 100%;
+	line-height: 1;
+	display: block;
+	padding: 0%, 1%;
+	position: absolute;
+	top: 690px;
+
+}
+
+
+.gameHeader, .homeHeader, .beastHeader {
+	width: 100%;
+	float: left;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	background-color: #FFF;
+	width: 100%;
+	margin: 2% auto; 
+	color: #191919;
+	text-align: center;
+	display: block;
+}
+
+.beastHeader {
+	font-family: "Stalinist One";
+	color: red;
+	top: 580px;
+	position: absolute;
+	width: 65%;
+}
+
+#normalMode {
+	display: none;
+	cursor: pointer;
+}
+#beastMode {
+	cursor: pointer;
+}
+
+.homeHeader {
+	position: absolute;
+	top: 885px;
+	width: 65%;
+}
+
+#gameCanvas {
+	background-image: url("../images/background.png");
+}

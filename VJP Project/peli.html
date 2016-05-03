@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Font -->
+		<link href='https://fonts.googleapis.com/css?family=Archivo+Narrow' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Stalinist+One' rel='stylesheet' type='text/css'>
+		<!-- End font-->
+		<title>I Skip Leg Day - The Game</title>
+
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/gameStyle.css" />
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+		<script src="js/jQuery.js"></script>
+    	<script src="js/jquery-2.2.0.min.js"></script>
+	</head>
+
+	<body style = "text-align: center">
+		<div class="gameHeader">
+			<h2>I SKIP LEG DAY - THE GAME</h2>
+		</div>
+
+		<div class="beastHeader">
+			<span id="beastMode" onclick="modeOn()"><h4>BEASTMODE</h4></span>
+			<span id="normalMode" onclick="modeOff()"><h4>BEASTMODE OFF</h4></span>
+		</div>
+
+		<main class="mainArticle">
+			<h2>IT'S YOUR CHANCE TO WIN A TESLA MODEL B- BICYCLE!</h2>
+			<article>
+				 <p>It's simple. Collect 100 coins, win the grand price of Model B - bicycle and skip the leg day forever! </p>
+				 <p>Move with your arrow-keys to get to the coins, but avoid your bros. As you know, friends don't let friends skip the leg day.</p>
+				 <p>You can also make your friends leave your safe-space by clicking them, but then your high-score won't be saved, nor will you be able to win the bicycle.</p>
+				 <p>Going too slow? Try activating the BEASTMODE.</p>
+			 </article>
+		</main>
+
+		<div class="homeHeader">
+			<h3><a href="index.html">BACK TO HOME</a></h3>
+		</div>
+
+		<div id="SplashScreen">
+		<img id="loadScreen" src="images/loadscreen.png" onclick="playGame()">
+
+		<canvas id= "gameCanvas" style= "display: none;"></canvas>
+
+		<script src="js/enemy.js"></script>
+		<script src="js/player.js"></script>
+		<script src="js/animation.js"></script>
+		<script src="js/game.js"></script>
+		<audio id="audio" src="audio/kaching.mp3">
+		<audio id="ohyeah" src="audio/ohyeah.mp3"></audio>
+
+	</body>
+</html>
