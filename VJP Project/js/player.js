@@ -39,5 +39,9 @@ function Player(speed) {
 			hero.x = 481;
 		}
 	}
+	if (80 in keysDown) { // "P" - button pressed
+		pauseGame();
+		console.log("PAINALLUS");
+		}
 	}
 };
