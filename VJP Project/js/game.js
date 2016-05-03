@@ -36,6 +36,30 @@ enemyImage.onload = function () {
 };
 enemyImage.src = "images/monster.png";
 
+// Play Icon
+var playReady = false;
+var playImage = new Image();
+playImage.onload = function () {
+	playReady = true;
+};
+playImage.src = "images/playIcon.png";
+
+// Newgame Icon
+var ngReady = false;
+var ngImage = new Image();
+ngImage.onload = function () {
+	ngReady = true;
+};
+ngImage.src = "images/newgame.png";
+
+// Mute Icon
+var muteReady = false;
+var muteImage = new Image();
+muteImage.onload = function () {
+	muteReady = true;
+};
+muteImage.src = "images/muteicon.png";
+
 // Audio files
 var play = function() {
 	var audio = document.getElementById("audio");
@@ -45,6 +69,11 @@ var play = function() {
 var yeah = function() {
 	var yeah = document.getElementById("ohyeah")
 	yeah.play();
+}
+
+var gameover = function() {
+	var gameover = document.getElementById("gameover")
+	gameover.play();
 }
 
 
@@ -177,9 +206,11 @@ var update = function (modifier) {
 
 	enemySprite.updateSprite();
 
+	// Check for enemy collision
 	for (i = 0; i < enemyCount; i++) { 
     	if (enemies[i].move(modifier)) {
     	newGame();
+    	gameover();
     	}
 	}
 };
@@ -200,8 +231,10 @@ var render = function () {
 		// MENU BUTTON 1
 		ctx.beginPath();
 		ctx.rect(56,180,120,120);
-		ctx.fillStyle = "rgb(56,50,50)";
+		ctx.fillStyle = "rgb(233,5,5)";
 		ctx.fill();
+
+		ctx.drawImage(playImage,76,200);
 
 		// MENU BUTTON 2
 		ctx.beginPath();
@@ -209,11 +242,16 @@ var render = function () {
 		ctx.fillStyle = "rgb(250,250,250)";
 		ctx.fill();
 
+		ctx.drawImage(muteImage,216,200);
+
+
 		// MENU BUTTON 3
 		ctx.beginPath();
 		ctx.rect(336,180,120,120);
 		ctx.fillStyle = "rgb(184,182,182)";
 		ctx.fill();
+
+		ctx.drawImage(ngImage,356,205);
 		return;
 
 	}
