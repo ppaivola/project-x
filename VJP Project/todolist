@@ -1,12 +1,7 @@
-- Toimiva menu, jossa esim "mute", "new game" ja "resume" napit. Varmaan kannattaa tehdä oma kansio kaikille menu-toiminnoille?
-  Kelasin tosiaan toteuttaa menun noilla kolmella laatikolla jotka saa nyt kuolemalla tai pausella näkyviin, ja siihen sit tekee
-  sellasen metodin joka seuraa sitä mihin hiirellä klikataan ja suorittaa sitten "muten" tai muun toiminnon sillä perusteella.
-  
-- Toteuttaa menun näkyviin tuleminen järkevämmin kun tolla nykysellä iffillä. Laitoin sen sillä tavalla vaan tyypatakseni canvakselle piirtämistä.
 
-- Pitää korjata bugi jossa vihu spawnaa suoraan kolikon tilalle
+- Pitää korjata bugi jossa vihu spawnaa suoraan kolikon tilalle. Tääki ehkä vähän siihen jos jaksaa/ ehtii osastoon
 
-- Kaikki turha paska pois kuten esim. vihollisten poistaminen onClick, koodin siivoaminen ja jäsentely. 
+- Toiminnallisuudet pausemenun napeille ja ehkä erilainen menu gameoveriin jos näkyy score / jotain vittuilua siitä ettei saanu 100 kolikkoo
 
 - BeastMode kokonaan vittuun tai sille joku järkevä toiminnallisuus, esim 5 sek godmode jota voi käyttää kerran pelissä.
 
