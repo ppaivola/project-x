@@ -56,10 +56,7 @@ var enemyCount = 0;
 var gameOver = false;
 var enemies = new Array(new Enemy(hero));
 var best = localStorage.getItem("top");
-var enemiesDeleted = false;
-
-
-
+var onPause = false;
 
 // New game setup
 var newGame = function() {
@@ -74,7 +71,7 @@ gameOver = false;
 keysDown= {};
 cancelAnimationFrame(requestID);
 
-if (coinsCaught >= best && !enemiesDeleted) {
+if (coinsCaught >= best) {
 	best = coinsCaught;
 }
 
@@ -102,106 +99,6 @@ var reset = function () {
 };
 
 
-// animation.js - Sprite content
-var lastTime = 0;							
-	
-	function sprite (options) {
-	
-		var that = {},
-			frameIndex = 0,
-			tickCount = 0,
-			ticksPerFrame = options.ticksPerFrame || 0,
-			numberOfFrames = options.numberOfFrames || 1;
-		
-		that.context = options.context;
-		that.width = options.width;
-		that.height = options.height;
-		that.image = options.image;
-		
-		that.updateSprite = function () {
-
-            tickCount += 1;
-
-            if (tickCount > ticksPerFrame) {
-
-				tickCount = 0;
-				
-                // If the current frame index is in range
-                if (frameIndex < numberOfFrames - 1) {	
-                    // Go to the next frame
-                    frameIndex += 1;
-                } else {
-                    frameIndex = 0;
-                }
-            }
-        };
-		
-		that.renderHero = function () {
-		
-		  // Clear the canvas
-		  ctx.clearRect(0, 0, canvas.width, canvas.height);
-		  
-		  // Draw the animation
-		  ctx.drawImage(
-		    that.image,
-		    frameIndex * that.width / numberOfFrames,
-		    0,
-		    that.width / numberOfFrames,
-		    that.height,
-		    hero.x,
-		    hero.y,
-		    that.width / numberOfFrames,
-		    that.height);
-		};
-
-
-		that.renderEnemy = function (x,y) {
-		  
-		  // Draw the animation
-		  ctx.drawImage(
-		    that.image,
-		    frameIndex * that.width / numberOfFrames,
-		    0,
-		    that.width / numberOfFrames,
-		    that.height,
-		    x,
-		    y,
-		    that.width / numberOfFrames,
-		    that.height);
-		};
-		
-		return that;
-	}
-	
-	// Create sprite sheets
-	var heroSpriteImage = new Image();
-	var enemySpriteImage = new Image();	
-	
-	// Create sprites
-	var heroSprite = sprite({
-		context: ctx,
-		width: 60,
-		height: 32,
-		image: heroSpriteImage,
-		numberOfFrames: 2,
-		ticksPerFrame: 20
-	});
-
-	var enemySprite = sprite({
-		context: ctx,
-		width: 60,
-		height: 32,
-		image: enemySpriteImage,
-		numberOfFrames: 2,
-		ticksPerFrame: 20
-	});
-	
-	// Load sprite sheet
-	heroSpriteImage.addEventListener("load", main);
-	heroSpriteImage.src = "images/hero-sprite.png";
-	enemySpriteImage.addEventListener("load", main);
-	enemySpriteImage.src = "images/enemy-sprite.png";
-
 // Handle keyboard controls
 var keysDown = {};
 
@@ -220,10 +117,12 @@ addEventListener("keyup", function (e) {
 	delete keysDown[e.keyCode];
 
 	// Prevent window from scrolling
-        if (e.keyCode === 38 || e.keyCode === 40 || e.keyCode === 32 || e.keyCode == 37 || e.keyCode == 39) {
+        if (e.keyCode === 38 || e.keyCode === 40 || e.keyCode === 32 || e.keyCode == 37 || e.keyCode == 39 || e.keyCode == 80) {
           e.preventDefault();
         }
 }, false);
+
+
 
 // Beastmode toggle
 var modeOn = function() {
@@ -246,59 +145,8 @@ var playGame = function() {
 	$("#gameCanvas").fadeIn("fast");
 }
 
-/**var pauseGame = function() {
-	document.getElementById("gameCanvas").style.display = "none";
-	$("#loadScreen").fadeIn("fast"); 
-} */
-var onPause = false;
 var pauseGame = function() {
 	onPause = true;
-}
-
-// Delete enemies on click 
-canvas.addEventListener("mousedown", tap);
-
-function getElementPosition (element) {
-	
-       var parentOffset,
-       	   pos = {
-               x: element.offsetLeft,
-               y: element.offsetTop 
-           };
-           
-       if (element.offsetParent) {
-           parentOffset = getElementPosition(element.offsetParent);
-           pos.x += parentOffset.x;
-           pos.y += parentOffset.y;
-       }
-       return pos;
-}
-	
-function tap (e) {
-	
-		var i,
-			loc = {},
-			pos = getElementPosition(canvas),
-			tapX = e.targetTouches ? e.targetTouches[0].pageX : e.pageX,
-			tapY = e.targetTouches ? e.targetTouches[0].pageY : e.pageY,
-			canvasScaleRatio = canvas.width / canvas.offsetWidth;
-
-		loc.x = (tapX - pos.x) * canvasScaleRatio;
-		loc.y = (tapY - pos.y) * canvasScaleRatio;
-			
-		for (i = 0; i < enemies.length; i += 1) {
-			if (
-				enemies[i].x <= (loc.x + 26)
-				&& loc.x <= (enemies[i].x + 26)
-				&& enemies[i].y <= (loc.y + 26)
-				&& loc.y <= (enemies[i].y + 26)
-			) {
-				enemies[i] = null;
-				enemies.splice(i, 1);
-				enemyCount -= 1;
-				enemiesDeleted = true;
-			}
-		}				
 }
 
 // Update game objects
