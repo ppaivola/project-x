@@ -11,6 +11,10 @@ function Player(speed) {
 
 	this.move = function(modifier) {
 
+	if (onPause && !(80 in keysDown) ) {
+		return;
+	}
+
 	if (38 in keysDown) { // Player holding up
 		hero.y -= hero.speed * modifier;
 		heroSprite.updateSprite();
@@ -40,10 +44,7 @@ function Player(speed) {
 			hero.x = 481;
 		}
 	}
-	if (80 in keysDown) { // "P" - button pressed
-		pauseGame();
-		console.log("Pause pressed");
-	}
+
 
 	};
 };
