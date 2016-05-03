@@ -352,17 +352,31 @@ var render = function () {
 		}
 
 	if (onPause) {
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+
 		ctx.beginPath();
 		ctx.rect(0, 0, 512, 480);
-		ctx.fillStyle = "rgba(0,0,0,0.3)";
+		ctx.fillStyle = "rgba(50,50,50,0.3)";
 		ctx.fill();
-		ctx.fillStyle = "rgb(0, 0, 0)";
-		ctx.font = "72px Helvetica";
-		ctx.textAlign = "center";
-		ctx.textBaseline = "top";
-		ctx.fillText("GAME OVER!", 256, 240);
-		ctx.fillText("Coins caught: " + coinsCaught, 32, 32);
-		ctx.fillText("Best: " + best, 32, 64);
+
+		// MENU BUTTON 1
+		ctx.beginPath();
+		ctx.rect(56,180,120,120);
+		ctx.fillStyle = "rgb(56,50,50)";
+		ctx.fill();
+
+		// MENU BUTTON 2
+		ctx.beginPath();
+		ctx.rect(196,180,120,120);
+		ctx.fillStyle = "rgb(250,250,250)";
+		ctx.fill();
+
+		// MENU BUTTON 3
+		ctx.beginPath();
+		ctx.rect(336,180,120,120);
+		ctx.fillStyle = "rgb(184,182,182)";
+		ctx.fill();
+
 	}
 }
 
