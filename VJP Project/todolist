@@ -1,7 +1,13 @@
 - Toimiva menu, jossa esim "mute", "new game" ja "resume" napit. Varmaan kannattaa tehdä oma kansio kaikille menu-toiminnoille?
   Kelasin tosiaan toteuttaa menun noilla kolmella laatikolla jotka saa nyt kuolemalla tai pausella näkyviin, ja siihen sit tekee
   sellasen metodin joka seuraa sitä mihin hiirellä klikataan ja suorittaa sitten "muten" tai muun toiminnon sillä perusteella.
+  
 - Toteuttaa menun näkyviin tuleminen järkevämmin kun tolla nykysellä iffillä. Laitoin sen sillä tavalla vaan tyypatakseni canvakselle piirtämistä.
+
+- Pitää korjata bugi jossa vihu spawnaa suoraan kolikon tilalle
+
 - Kaikki turha paska pois kuten esim. vihollisten poistaminen onClick, koodin siivoaminen ja jäsentely. 
+
 - BeastMode kokonaan vittuun tai sille joku järkevä toiminnallisuus, esim 5 sek godmode jota voi käyttää kerran pelissä.
+
 - HeroSpritelle eri animaatiot sivuttais- ja pystysuunnan liikkeelle
