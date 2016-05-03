@@ -108,7 +108,11 @@ addEventListener("keydown", function (e) {
 	// Prevent window from scrolling
 	if (e.keyCode === 38 || e.keyCode === 40 || e.keyCode === 32 || e.keyCode == 37 || e.keyCode == 39 || e.keyCode == 80) {
           e.preventDefault();
-        }
+    }
+    if (80 in keysDown) { // "P" - button pressed
+		pauseGame();
+		console.log("Pause pressed");
+	}
 }, false);
 
 
@@ -117,9 +121,9 @@ addEventListener("keyup", function (e) {
 	delete keysDown[e.keyCode];
 
 	// Prevent window from scrolling
-        if (e.keyCode === 38 || e.keyCode === 40 || e.keyCode === 32 || e.keyCode == 37 || e.keyCode == 39 || e.keyCode == 80) {
+    if (e.keyCode === 38 || e.keyCode === 40 || e.keyCode === 32 || e.keyCode == 37 || e.keyCode == 39 || e.keyCode == 80) {
           e.preventDefault();
-        }
+    }
 }, false);
 
 
