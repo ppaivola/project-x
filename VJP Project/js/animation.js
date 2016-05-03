@@ -58,8 +58,6 @@ var lastTime = 0;
 
 		that.renderEnemy = function (x,y) {
 		
-		  // Clear the canva
-		  
 		  // Draw the animation
 		  ctx.drawImage(
 		    that.image,
