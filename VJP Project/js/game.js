@@ -106,11 +106,11 @@ addEventListener("keydown", function (e) {
 	keysDown[e.keyCode] = true;
 
 	// Prevent window from scrolling
-	if (e.keyCode === 38 || e.keyCode === 40 || e.keyCode === 32 || e.keyCode == 37 || e.keyCode == 39) {
+	if (e.keyCode === 38 || e.keyCode === 40 || e.keyCode === 32 || e.keyCode == 37 || e.keyCode == 39 || e.keyCode == 80) {
           e.preventDefault();
         }
-
 }, false);
+
 
 
 addEventListener("keyup", function (e) {
@@ -146,7 +146,7 @@ var playGame = function() {
 }
 
 var pauseGame = function() {
-	onPause = true;
+	onPause = !onPause;
 }
 
 // Update game objects
@@ -182,24 +182,10 @@ var update = function (modifier) {
 
 // Draw everything
 var render = function () {
-	if (bgReady) {
-		ctx.drawImage(bgImage, 0, 0);
-	}
+	
 
-	if (heroReady) {
-		heroSprite.renderHero()
-	}
+	if(onPause) {
 
-	if (coinReady) {
-		ctx.drawImage(coinImage, coin.x, coin.y);
-	}
-
-	if (enemyReady) {
-		for (i = 0; i < enemyCount; i++) { 
-    	enemySprite.renderEnemy(enemies[i].x, enemies[i].y);
-		}
-
-	if (onPause) {
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 		ctx.beginPath();
@@ -224,8 +210,27 @@ var render = function () {
 		ctx.rect(336,180,120,120);
 		ctx.fillStyle = "rgb(184,182,182)";
 		ctx.fill();
+		return;
 
 	}
+
+	if (bgReady) {
+		ctx.drawImage(bgImage, 0, 0);
+	}
+
+	if (heroReady) {
+		heroSprite.renderHero()
+	}
+
+	if (coinReady) {
+		ctx.drawImage(coinImage, coin.x, coin.y);
+	}
+
+	if (enemyReady) {
+		for (i = 0; i < enemyCount; i++) { 
+    	enemySprite.renderEnemy(enemies[i].x, enemies[i].y);
+		}
+
 }
 
 	// Score
