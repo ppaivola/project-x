@@ -83,6 +83,9 @@ var onPause = false;
 
 var selectedMenuButton = 0;
 var gameStarted = false;
+// TODO: add to newGame
+var beastMode = false;
+var beastUsed = false;
 
 function gameover() {
 	ctx.font = "30px Arial";
@@ -161,6 +164,11 @@ addEventListener("keydown", function (e) {
 		pauseGame();
 		console.log("Pause pressed");
 	}
+	
+	if (e.keyCode === 32) { // space
+		console.log("Activate beast mode");
+		modeOn();
+	}
 
 	if (onPause && e.keyCode !== 80 ) {
 		if (e.keyCode === 37) { // left
@@ -195,7 +203,6 @@ function menuButtonAction (selectedMenuButton) {
 	 	 		location.reload();
 	 	 		break;
 	 	 	default:
-	 	 		// statements_def
 	 	 		break;
 	 	 }
 }
@@ -213,18 +220,25 @@ addEventListener("keyup", function (e) {
 
 // Beastmode toggle
 var modeOn = function() {
+	if (beastUsed) return; 
 	document.getElementById("beastMode").style.display = "none";
 	$("#normalMode").fadeIn("slow");
 	yeah();
 	hero.beastSpeed();
-
+	beastMode = beastUsed = true;
+	setTimeout(modeOff, 10E3); // Beast mode timeout
 };
 var modeOff = function() {
+	//document.getElementById("normalMode").style.display = "none";
+	//$("#beastMode").fadeIn("slow");
+	hero.normalSpeed();
+	beastMode = false;
+};
+
+function reTesla () {
 	document.getElementById("normalMode").style.display = "none";
 	$("#beastMode").fadeIn("slow");
-	hero.normalSpeed();
-
-};
+}
 
 // Loadingscreen toggle
 var playGame = function() {
@@ -253,6 +267,12 @@ var update = function (modifier) {
 	) {
 		++coinsCaught;
 		
+		// Grant tesla bike mode in every 10 coins
+		if (coinsCaught % 10 === 0) {
+			beastUsed = false;
+			reTesla();
+		}
+		
 		if (enemyCount <= 20) {
 			enemies[enemyCount] = new Enemy(hero);
 			++enemyCount;
@@ -267,7 +287,8 @@ var update = function (modifier) {
 	// Check for enemy collision
 	for (i = 0; i < enemyCount; i++) { 
     	if (enemies[i].move(modifier)) {
-    	gameover();
+    	// Ignore collision in beast mode
+    	if (!beastMode) gameover();
     	}
 	}
 };
@@ -347,6 +368,15 @@ var render = function () {
 		}
 
 }
+
+	if (beastMode) {
+		// Indicate tesla bike mode
+		ctx.fillStyle = "rgb(255, 0, 0)";
+		ctx.font = "24px Helvetica";
+		ctx.textAlign = "Center";
+		ctx.textBaseline = "top";
+		ctx.fillText("TESLA BIKE MODE", canvas.width / 2 - 100, canvas.height / 2 - 125);
+	}
 
 	// Score
 	ctx.fillStyle = "rgb(0, 0, 0)";
