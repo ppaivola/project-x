@@ -60,16 +60,23 @@
         muteReady = true;
     };
     muteImage.src = "images/muteicon.png";
+    //unmuteImage.src = "images/unmuteicon.png";
 
     // Audio files
     var audio = document.getElementById("audio");
     var yeah = document.getElementById("ohyeah");
     var gameOverAudio = document.getElementById("gameover");
-
+    var themeMusic = document.getElementById("theme");
+    var rideMusic = document.getElementById("riding");
+    
+    themeMusic.play();
+    
     function muteAll() {
         audio.muted = !audio.muted;
         yeah.muted = !yeah.muted;
         gameOverAudio.muted = !gameOverAudio.muted;
+        themeMusic.muted = !themeMusic.muted;
+        rideMusic.muted = !rideMusic.muted;
     }
 
     // Game state 
@@ -233,6 +240,8 @@
         yeah.play();
         hero.beastSpeed();
         beastMode = beastUsed = true;
+        themeMusic.pause();
+        rideMusic.play();
         setTimeout(modeOff, 10E3); // Beast mode timeout
     }
 
@@ -241,6 +250,9 @@
         //$("#beastMode").fadeIn("slow");
         hero.normalSpeed();
         beastMode = false;
+        themeMusic.play();
+        rideMusic.pause();
+        //rideMusic.currentTime = 0;
     }
 
     function reTesla() {
