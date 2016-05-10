@@ -87,6 +87,8 @@ var enemies = new Array(new Enemy(hero));
 var best = localStorage.getItem("top");
 var onPause = false;
 
+var selectedMenuButton = 0;
+
 // New game setup
 var newGame = function() {
 
@@ -133,7 +135,6 @@ var keysDown = {};
 
 addEventListener("keydown", function (e) {
 	keysDown[e.keyCode] = true;
-
 	// Prevent window from scrolling
 	if (e.keyCode === 38 || e.keyCode === 40 || e.keyCode === 32 || e.keyCode == 37 || e.keyCode == 39 || e.keyCode == 80) {
           e.preventDefault();
@@ -141,6 +142,22 @@ addEventListener("keydown", function (e) {
     if (80 in keysDown) { // "P" - button pressed
 		pauseGame();
 		console.log("Pause pressed");
+	}
+
+	if (onPause && !(e.keyCode === 80) ) {
+		if (e.keyCode === 37) { // left
+			selectedMenuButton += 1;
+			selectedMenuButton = selectedMenuButton % 3;
+			}
+		if (e.keyCode === 39) { // right
+			selectedMenuButton += 1;
+			selectedMenuButton = selectedMenuButton % 3;
+		}
+		if (e.keyCode === 13) { // enter
+			console.log(selectedMenuButton);
+			//menuButtonAction(selectedMenuButton);
+		}
+		console.log(selectedMenuButton);
 	}
 }, false);
 
@@ -215,6 +232,22 @@ var update = function (modifier) {
 	}
 };
 
+function highlight (selectedMenuButton, startX,buttonSpacing, sideLength) {
+	// Highlight
+	var buttonX = startX + selectedMenuButton * buttonSpacing;
+	var buttonY = 180;
+
+	ctx.beginPath();
+	ctx.moveTo(buttonX, buttonY);
+	ctx.lineTo(buttonX,buttonY+sideLength);
+	ctx.lineTo(buttonX+sideLength,buttonY+sideLength);
+	ctx.lineTo(buttonX+sideLength,buttonY);
+	ctx.lineTo(buttonX,buttonY);
+	ctx.lineWidth=10;
+	ctx.strokeStyle="yellow";
+	ctx.stroke();
+}
+
 // Draw everything
 var render = function () {
 	
@@ -252,6 +285,8 @@ var render = function () {
 		ctx.fill();
 
 		ctx.drawImage(ngImage,356,205);
+
+		highlight(selectedMenuButton, 56, 196-56, 120);
 		return;
 
 	}
