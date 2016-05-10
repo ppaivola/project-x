@@ -71,12 +71,6 @@ var yeah = function() {
 	yeah.play();
 };
 
-var gameover = function() {
-	var gameover = document.getElementById("gameover");
-	gameover.play();
-};
-
-
 // Game state 
 var hero = new Player(256);
 var coin = {};
@@ -90,13 +84,35 @@ var onPause = false;
 var selectedMenuButton = 0;
 var gameStarted = false;
 
-// New game setup
-var newGame = function() {
+function gameover() {
+	ctx.font = "30px Arial";
+	ctx.fillText("Game Over.", canvas.width / 2 - 70, canvas.height / 2 - 125);
+	ctx.fillText("You failed to collect 100 coins.", canvas.width / 2 - 200, canvas.height / 2 + 50);
+	ctx.fillText("Better luck next time!", canvas.width / 2 - 150, canvas.height / 2 + 100);
+	
+	// TODO: Fix audio
+	//var gameover = document.getElementById("gameover");
+	//gameover.play();
+	gameOver = true;
 
+	// Display game over for 3 seconds.
+	setTimeout(function () {
+		console.log("New game");
+		newGame();
+		// Restart animation routine
+		var w = window;
+		requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
+		var then = Date.now();
+		reset();
+		main();
+	}, 3000);
+}
+
+// New game setup
+function newGame() {
 for (i = 0; i < enemyCount; i++) { 
     	enemies[i] = null;
 		}
-
 enemies = [new Enemy(hero)];
 enemyCount = 0;
 gameOver = false;
@@ -107,13 +123,14 @@ if (coinsCaught >= best) {
 	best = coinsCaught;
 }
 
+
 localStorage.setItem("top", best);
 
 coinsCaught = 0;
 hero.x = canvas.width / 2;
 hero.y = canvas.height / 2;
 pauseGame();
-};
+}
 
 // Reset the game when the player catches a coin
 var isFirst = true;
@@ -223,6 +240,7 @@ var pauseGame = function() {
 // Update game objects
 var update = function (modifier) {
 	if(onPause) return;
+	if(gameOver) return;
 
 	hero.move(modifier);
 
@@ -249,7 +267,6 @@ var update = function (modifier) {
 	// Check for enemy collision
 	for (i = 0; i < enemyCount; i++) { 
     	if (enemies[i].move(modifier)) {
-    	newGame();
     	gameover();
     	}
 	}
@@ -273,8 +290,7 @@ function highlight (selectedMenuButton, startX,buttonSpacing, sideLength) {
 
 // Draw everything
 var render = function () {
-	
-
+	if (gameOver) return;
 	if(onPause) {
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 
