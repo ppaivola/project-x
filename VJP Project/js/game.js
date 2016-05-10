@@ -100,6 +100,7 @@
     var gameStarted = false;
     var beastMode = false;
     var beastUsed = false;
+    var movDir = "left";
 
     function gameover() {
         ctx.font = "30px Arial";
@@ -383,7 +384,12 @@
         }
 
         if (heroReady) {
-            heroSprite.renderHero();
+            if(!beastMode) heroSprite.renderHero();
+            else if(movDir == "left") {
+                bikeheroSpriteLeft.renderHero();
+            } else {
+                bikeheroSpriteRight.renderHero();                
+            }
         }
 
         if (coinReady) {

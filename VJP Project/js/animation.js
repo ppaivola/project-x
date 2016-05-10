@@ -76,6 +76,8 @@ function sprite(options) {
 
 // Create sprite sheets
 var heroSpriteImage = new Image();
+var bikeheroSpriteLeftImage = new Image();
+var bikeheroSpriteRightImage = new Image();
 var enemySpriteImage = new Image();
 
 // Create sprites
@@ -97,11 +99,33 @@ var enemySprite = sprite({
     ticksPerFrame: 20
 });
 
+var bikeheroSpriteLeft = sprite({
+    context: ctx,
+    width: 70,
+    height: 35,
+    image: bikeheroSpriteLeftImage,
+    numberOfFrames: 2,
+    ticksPerFrame: 20
+});
+
+var bikeheroSpriteRight = sprite({
+    context: ctx,
+    width: 70,
+    height: 35,
+    image: bikeheroSpriteRightImage,
+    numberOfFrames: 2,
+    ticksPerFrame: 20
+});
+
 // Load sprite sheet
 heroSpriteImage.addEventListener("load", main);
 heroSpriteImage.src = "images/hero-sprite.png";
 enemySpriteImage.addEventListener("load", main);
 enemySpriteImage.src = "images/enemy-sprite.png";
+bikeheroSpriteLeftImage.addEventListener("load", main);
+bikeheroSpriteLeftImage.src = "images/bikeleft.png";
+bikeheroSpriteRightImage.addEventListener("load", main);
+bikeheroSpriteRightImage.src = "images/bikeright.png";
 
 
 // The main game loop

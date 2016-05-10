@@ -31,6 +31,7 @@ function Player(speed) {
             }
         }
         if (37 in keysDown) { // Player holding left
+            movDir = "left";
             hero.x -= hero.speed * modifier;
             heroSprite.updateSprite();
             if (hero.x <= 0) {
@@ -38,6 +39,7 @@ function Player(speed) {
             }
         }
         if (39 in keysDown) { // Player holding right
+            movDir = "right";
             hero.x += hero.speed * modifier;
             heroSprite.updateSprite();
             if (hero.x >= 481) {
