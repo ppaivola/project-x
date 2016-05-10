@@ -88,6 +88,7 @@ var best = localStorage.getItem("top");
 var onPause = false;
 
 var selectedMenuButton = 0;
+var gameStarted = false;
 
 // New game setup
 var newGame = function() {
@@ -146,22 +147,41 @@ addEventListener("keydown", function (e) {
 
 	if (onPause && !(e.keyCode === 80) ) {
 		if (e.keyCode === 37) { // left
-			selectedMenuButton += 1;
-			selectedMenuButton = selectedMenuButton % 3;
+			if (selectedMenuButton == 0) selectedMenuButton = 2;
+			else selectedMenuButton += -1;
 			}
 		if (e.keyCode === 39) { // right
 			selectedMenuButton += 1;
 			selectedMenuButton = selectedMenuButton % 3;
 		}
 		if (e.keyCode === 13) { // enter
-			console.log(selectedMenuButton);
-			//menuButtonAction(selectedMenuButton);
+			menuButtonAction(selectedMenuButton);
 		}
 		console.log(selectedMenuButton);
 	}
+	// Pressing any key will start the game
+	if (!gameStarted) playGame();
 }, false);
 
-
+function menuButtonAction (selectedMenuButton) {
+	 switch (selectedMenuButton) {
+	 	 	case 0:
+	 	 		console.log("Resume");
+	 	 		onPause = false;
+	 	 		break;
+	 	 	case 1:
+	 	 		audio.muted = !audio.muted;
+	 	 		console.log("Mute: " + audio.muted);
+	 	 		break;
+	 	 	case 2:
+	 	 		console.log("Restart");
+	 	 		location.reload();
+	 	 		break;
+	 	 	default:
+	 	 		// statements_def
+	 	 		break;
+	 	 }
+}
 
 addEventListener("keyup", function (e) {
 	delete keysDown[e.keyCode];
@@ -193,6 +213,7 @@ var modeOff = function() {
 var playGame = function() {
 	document.getElementById("loadScreen").style.display = "none";
 	$("#gameCanvas").fadeIn("fast");
+	gameStarted = true;
 }
 
 var pauseGame = function() {
