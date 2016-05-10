@@ -149,6 +149,7 @@ function newGame() {
     coinsCaught = 0;
     hero.x = canvas.width / 2;
     hero.y = canvas.height / 2;
+    reTesla();
     pauseGame();
 }
 

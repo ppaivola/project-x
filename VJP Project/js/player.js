@@ -46,7 +46,5 @@ function Player(speed) {
                 hero.x = 481;
             }
         }
-
-
     };
 }
