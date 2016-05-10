@@ -121,6 +121,8 @@ function newGame() {
     gameOver = false;
     beastMode = false;
     beastUsed = false;
+    selectedMenuButton = 0;
+    gameStarted = false;
 
     keysDown = {};
     cancelAnimationFrame(requestID);
@@ -173,7 +175,7 @@ addEventListener("keydown", function(e) {
         modeOn();
     }
 
-    if (onPause && e.keyCode !== 80) {
+    if (onPause && e.keyCode !== 80 && !gameOver) {
         if (e.keyCode === 37) { // left
             if (selectedMenuButton === 0) selectedMenuButton = 2;
             else selectedMenuButton += -1;
@@ -186,7 +188,11 @@ addEventListener("keydown", function(e) {
             menuButtonAction(selectedMenuButton);
         }
         console.log(selectedMenuButton);
+    } else if (13 in keysDown && !gameOver) {
+            pauseGame();
+            console.log("Pause pressed");
     }
+
     // Pressing any key will start the game
     if (!gameStarted) playGame();
 }, false);
