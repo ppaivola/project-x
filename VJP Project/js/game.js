@@ -222,6 +222,8 @@ var pauseGame = function() {
 
 // Update game objects
 var update = function (modifier) {
+	if(onPause) return;
+
 	hero.move(modifier);
 
 	// Check for collision with coin
@@ -274,7 +276,6 @@ var render = function () {
 	
 
 	if(onPause) {
-
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 		ctx.beginPath();
