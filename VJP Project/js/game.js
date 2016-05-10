@@ -7,68 +7,68 @@ canvas.height = 480;
 // Background image
 var bgReady = false;
 var bgImage = new Image();
-bgImage.onload = function () {
-	bgReady = true;
+bgImage.onload = function() {
+    bgReady = true;
 };
 bgImage.src = "images/background.png";
 
 // Hero image
 var heroReady = false;
 var heroImage = new Image();
-heroImage.onload = function () {
-	heroReady = true;
+heroImage.onload = function() {
+    heroReady = true;
 };
 heroImage.src = "images/hero.png";
 
 // Coin image
 var coinReady = false;
 var coinImage = new Image();
-coinImage.onload = function () {
-	coinReady = true;
+coinImage.onload = function() {
+    coinReady = true;
 };
 coinImage.src = "images/coin.gif";
 
 // Enemy image
 var enemyReady = false;
 var enemyImage = new Image();
-enemyImage.onload = function () {
-	enemyReady = true;
+enemyImage.onload = function() {
+    enemyReady = true;
 };
 enemyImage.src = "images/monster.png";
 
 // Play Icon
 var playReady = false;
 var playImage = new Image();
-playImage.onload = function () {
-	playReady = true;
+playImage.onload = function() {
+    playReady = true;
 };
 playImage.src = "images/playicon.png";
 
 // Newgame Icon
 var ngReady = false;
 var ngImage = new Image();
-ngImage.onload = function () {
-	ngReady = true;
+ngImage.onload = function() {
+    ngReady = true;
 };
 ngImage.src = "images/newgame.png";
 
 // Mute Icon
 var muteReady = false;
 var muteImage = new Image();
-muteImage.onload = function () {
-	muteReady = true;
+muteImage.onload = function() {
+    muteReady = true;
 };
 muteImage.src = "images/muteicon.png";
 
 // Audio files
 var play = function() {
-	var audio = document.getElementById("audio");
-	audio.play();
+    var audio = document.getElementById("audio");
+    audio.play();
 };
 
 var yeah = function() {
-	var yeah = document.getElementById("ohyeah");
-	yeah.play();
+    var yeah = document.getElementById("ohyeah");
+    yeah.play();
 };
 
 // Game state 
@@ -88,131 +88,131 @@ var beastMode = false;
 var beastUsed = false;
 
 function gameover() {
-	ctx.font = "30px Arial";
-	ctx.fillText("Game Over.", canvas.width / 2 - 70, canvas.height / 2 - 125);
-	ctx.fillText("You failed to collect 100 coins.", canvas.width / 2 - 200, canvas.height / 2 + 50);
-	ctx.fillText("Better luck next time!", canvas.width / 2 - 150, canvas.height / 2 + 100);
-	
-	// TODO: Fix audio
-	//var gameover = document.getElementById("gameover");
-	//gameover.play();
-	gameOver = true;
+    ctx.font = "30px Arial";
+    ctx.fillText("Game Over.", canvas.width / 2 - 70, canvas.height / 2 - 125);
+    ctx.fillText("You failed to collect 100 coins.", canvas.width / 2 - 200, canvas.height / 2 + 50);
+    ctx.fillText("Better luck next time!", canvas.width / 2 - 150, canvas.height / 2 + 100);
 
-	// Display game over for 3 seconds.
-	setTimeout(function () {
-		console.log("New game");
-		newGame();
-		// Restart animation routine
-		var w = window;
-		requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
-		var then = Date.now();
-		reset();
-		main();
-	}, 3000);
+    // TODO: Fix audio
+    //var gameover = document.getElementById("gameover");
+    //gameover.play();
+    gameOver = true;
+
+    // Display game over for 3 seconds.
+    setTimeout(function() {
+        console.log("New game");
+        newGame();
+        // Restart animation routine
+        var w = window;
+        requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
+        var then = Date.now();
+        reset();
+        main();
+    }, 3000);
 }
 
 // New game setup
 function newGame() {
-for (i = 0; i < enemyCount; i++) { 
-    	enemies[i] = null;
-		}
-enemies = [new Enemy(hero)];
-enemyCount = 0;
-gameOver = false;
-keysDown= {};
-cancelAnimationFrame(requestID);
+    for (i = 0; i < enemyCount; i++) {
+        enemies[i] = null;
+    }
+    enemies = [new Enemy(hero)];
+    enemyCount = 0;
+    gameOver = false;
+    keysDown = {};
+    cancelAnimationFrame(requestID);
 
-if (coinsCaught >= best) {
-	best = coinsCaught;
-}
+    if (coinsCaught >= best) {
+        best = coinsCaught;
+    }
 
 
-localStorage.setItem("top", best);
+    localStorage.setItem("top", best);
 
-coinsCaught = 0;
-hero.x = canvas.width / 2;
-hero.y = canvas.height / 2;
-pauseGame();
+    coinsCaught = 0;
+    hero.x = canvas.width / 2;
+    hero.y = canvas.height / 2;
+    pauseGame();
 }
 
 // Reset the game when the player catches a coin
 var isFirst = true;
-var reset = function () {
-	if (isFirst) { 
-	hero.x = canvas.width / 2;
-	hero.y = canvas.height / 2;
+var reset = function() {
+    if (isFirst) {
+        hero.x = canvas.width / 2;
+        hero.y = canvas.height / 2;
 
-	isFirst = false;
-	}
+        isFirst = false;
+    }
 
-	// Throw the coin somewhere on the screen randomly
-	coin.x = 32 + (Math.random() * (canvas.width - 64));
-	coin.y = 32 + (Math.random() * (canvas.height - 64));
+    // Throw the coin somewhere on the screen randomly
+    coin.x = 32 + (Math.random() * (canvas.width - 64));
+    coin.y = 32 + (Math.random() * (canvas.height - 64));
 };
 
 
 // Handle keyboard controls
 var keysDown = {};
 
-addEventListener("keydown", function (e) {
-	keysDown[e.keyCode] = true;
-	// Prevent window from scrolling
-	if (e.keyCode === 38 || e.keyCode === 40 || e.keyCode === 32 || e.keyCode == 37 || e.keyCode == 39 || e.keyCode == 80) {
-          e.preventDefault();
+addEventListener("keydown", function(e) {
+    keysDown[e.keyCode] = true;
+    // Prevent window from scrolling
+    if (e.keyCode === 38 || e.keyCode === 40 || e.keyCode === 32 || e.keyCode == 37 || e.keyCode == 39 || e.keyCode == 80) {
+        e.preventDefault();
     }
     if (80 in keysDown) { // "P" - button pressed
-		pauseGame();
-		console.log("Pause pressed");
-	}
-	
-	if (e.keyCode === 32) { // space
-		console.log("Activate beast mode");
-		modeOn();
-	}
+        pauseGame();
+        console.log("Pause pressed");
+    }
 
-	if (onPause && e.keyCode !== 80 ) {
-		if (e.keyCode === 37) { // left
-			if (selectedMenuButton === 0) selectedMenuButton = 2;
-			else selectedMenuButton += -1;
-			}
-		if (e.keyCode === 39) { // right
-			selectedMenuButton += 1;
-			selectedMenuButton = selectedMenuButton % 3;
-		}
-		if (e.keyCode === 13) { // enter
-			menuButtonAction(selectedMenuButton);
-		}
-		console.log(selectedMenuButton);
-	}
-	// Pressing any key will start the game
-	if (!gameStarted) playGame();
+    if (e.keyCode === 32) { // space
+        console.log("Activate beast mode");
+        modeOn();
+    }
+
+    if (onPause && e.keyCode !== 80) {
+        if (e.keyCode === 37) { // left
+            if (selectedMenuButton === 0) selectedMenuButton = 2;
+            else selectedMenuButton += -1;
+        }
+        if (e.keyCode === 39) { // right
+            selectedMenuButton += 1;
+            selectedMenuButton = selectedMenuButton % 3;
+        }
+        if (e.keyCode === 13) { // enter
+            menuButtonAction(selectedMenuButton);
+        }
+        console.log(selectedMenuButton);
+    }
+    // Pressing any key will start the game
+    if (!gameStarted) playGame();
 }, false);
 
-function menuButtonAction (selectedMenuButton) {
-	 switch (selectedMenuButton) {
-	 	 	case 0:
-	 	 		console.log("Resume");
-	 	 		onPause = false;
-	 	 		break;
-	 	 	case 1:
-	 	 		audio.muted = !audio.muted;
-	 	 		console.log("Mute: " + audio.muted);
-	 	 		break;
-	 	 	case 2:
-	 	 		console.log("Restart");
-	 	 		location.reload();
-	 	 		break;
-	 	 	default:
-	 	 		break;
-	 	 }
+function menuButtonAction(selectedMenuButton) {
+    switch (selectedMenuButton) {
+        case 0:
+            console.log("Resume");
+            onPause = false;
+            break;
+        case 1:
+            audio.muted = !audio.muted;
+            console.log("Mute: " + audio.muted);
+            break;
+        case 2:
+            console.log("Restart");
+            location.reload();
+            break;
+        default:
+            break;
+    }
 }
 
-addEventListener("keyup", function (e) {
-	delete keysDown[e.keyCode];
+addEventListener("keyup", function(e) {
+    delete keysDown[e.keyCode];
 
-	// Prevent window from scrolling
+    // Prevent window from scrolling
     if (e.keyCode === 38 || e.keyCode === 40 || e.keyCode === 32 || e.keyCode == 37 || e.keyCode == 39 || e.keyCode == 80) {
-          e.preventDefault();
+        e.preventDefault();
     }
 }, false);
 
@@ -220,171 +220,171 @@ addEventListener("keyup", function (e) {
 
 // Beastmode toggle
 var modeOn = function() {
-	if (beastUsed) return; 
-	document.getElementById("beastMode").style.display = "none";
-	$("#normalMode").fadeIn("slow");
-	yeah();
-	hero.beastSpeed();
-	beastMode = beastUsed = true;
-	setTimeout(modeOff, 10E3); // Beast mode timeout
+    if (beastUsed) return;
+    document.getElementById("beastMode").style.display = "none";
+    $("#normalMode").fadeIn("slow");
+    yeah();
+    hero.beastSpeed();
+    beastMode = beastUsed = true;
+    setTimeout(modeOff, 10E3); // Beast mode timeout
 };
 var modeOff = function() {
-	//document.getElementById("normalMode").style.display = "none";
-	//$("#beastMode").fadeIn("slow");
-	hero.normalSpeed();
-	beastMode = false;
+    //document.getElementById("normalMode").style.display = "none";
+    //$("#beastMode").fadeIn("slow");
+    hero.normalSpeed();
+    beastMode = false;
 };
 
-function reTesla () {
-	document.getElementById("normalMode").style.display = "none";
-	$("#beastMode").fadeIn("slow");
+function reTesla() {
+    document.getElementById("normalMode").style.display = "none";
+    $("#beastMode").fadeIn("slow");
 }
 
 // Loadingscreen toggle
 var playGame = function() {
-	document.getElementById("loadScreen").style.display = "none";
-	$("#gameCanvas").fadeIn("fast");
-	gameStarted = true;
+    document.getElementById("loadScreen").style.display = "none";
+    $("#gameCanvas").fadeIn("fast");
+    gameStarted = true;
 };
 
 var pauseGame = function() {
-	onPause = !onPause;
+    onPause = !onPause;
 };
 
 // Update game objects
-var update = function (modifier) {
-	if(onPause) return;
-	if(gameOver) return;
+var update = function(modifier) {
+    if (onPause) return;
+    if (gameOver) return;
 
-	hero.move(modifier);
+    hero.move(modifier);
 
-	// Check for collision with coin
-	if (
-		hero.x <= (coin.x + 32) &&
-		coin.x <= (hero.x + 32) &&
-		hero.y <= (coin.y + 32) &&
-		coin.y <= (hero.y + 32)
-	) {
-		++coinsCaught;
-		
-		// Grant tesla bike mode in every 10 coins
-		if (coinsCaught % 10 === 0) {
-			beastUsed = false;
-			reTesla();
-		}
-		
-		if (enemyCount <= 20) {
-			enemies[enemyCount] = new Enemy(hero);
-			++enemyCount;
-			play();
-		}
+    // Check for collision with coin
+    if (
+        hero.x <= (coin.x + 32) &&
+        coin.x <= (hero.x + 32) &&
+        hero.y <= (coin.y + 32) &&
+        coin.y <= (hero.y + 32)
+    ) {
+        ++coinsCaught;
 
-		reset();
-	}
+        // Grant tesla bike mode in every 10 coins
+        if (coinsCaught % 10 === 0) {
+            beastUsed = false;
+            reTesla();
+        }
 
-	enemySprite.updateSprite();
+        if (enemyCount <= 20) {
+            enemies[enemyCount] = new Enemy(hero);
+            ++enemyCount;
+            play();
+        }
 
-	// Check for enemy collision
-	for (i = 0; i < enemyCount; i++) { 
-    	if (enemies[i].move(modifier)) {
-    	// Ignore collision in beast mode
-    	if (!beastMode) gameover();
-    	}
-	}
+        reset();
+    }
+
+    enemySprite.updateSprite();
+
+    // Check for enemy collision
+    for (i = 0; i < enemyCount; i++) {
+        if (enemies[i].move(modifier)) {
+            // Ignore collision in beast mode
+            if (!beastMode) gameover();
+        }
+    }
 };
 
-function highlight (selectedMenuButton, startX,buttonSpacing, sideLength) {
-	// Highlight
-	var buttonX = startX + selectedMenuButton * buttonSpacing;
-	var buttonY = 180;
+function highlight(selectedMenuButton, startX, buttonSpacing, sideLength) {
+    // Highlight
+    var buttonX = startX + selectedMenuButton * buttonSpacing;
+    var buttonY = 180;
 
-	ctx.beginPath();
-	ctx.moveTo(buttonX, buttonY);
-	ctx.lineTo(buttonX,buttonY+sideLength);
-	ctx.lineTo(buttonX+sideLength,buttonY+sideLength);
-	ctx.lineTo(buttonX+sideLength,buttonY);
-	ctx.lineTo(buttonX,buttonY);
-	ctx.lineWidth=10;
-	ctx.strokeStyle="yellow";
-	ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(buttonX, buttonY);
+    ctx.lineTo(buttonX, buttonY + sideLength);
+    ctx.lineTo(buttonX + sideLength, buttonY + sideLength);
+    ctx.lineTo(buttonX + sideLength, buttonY);
+    ctx.lineTo(buttonX, buttonY);
+    ctx.lineWidth = 10;
+    ctx.strokeStyle = "yellow";
+    ctx.stroke();
 }
 
 // Draw everything
-var render = function () {
-	if (gameOver) return;
-	if(onPause) {
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
+var render = function() {
+    if (gameOver) return;
+    if (onPause) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-		ctx.beginPath();
-		ctx.rect(0, 0, 512, 480);
-		ctx.fillStyle = "rgba(50,50,50,0.3)";
-		ctx.fill();
+        ctx.beginPath();
+        ctx.rect(0, 0, 512, 480);
+        ctx.fillStyle = "rgba(50,50,50,0.3)";
+        ctx.fill();
 
-		// MENU BUTTON 1
-		ctx.beginPath();
-		ctx.rect(56,180,120,120);
-		ctx.fillStyle = "rgb(233,5,5)";
-		ctx.fill();
+        // MENU BUTTON 1
+        ctx.beginPath();
+        ctx.rect(56, 180, 120, 120);
+        ctx.fillStyle = "rgb(233,5,5)";
+        ctx.fill();
 
-		ctx.drawImage(playImage,76,200);
+        ctx.drawImage(playImage, 76, 200);
 
-		// MENU BUTTON 2
-		ctx.beginPath();
-		ctx.rect(196,180,120,120);
-		ctx.fillStyle = "rgb(250,250,250)";
-		ctx.fill();
+        // MENU BUTTON 2
+        ctx.beginPath();
+        ctx.rect(196, 180, 120, 120);
+        ctx.fillStyle = "rgb(250,250,250)";
+        ctx.fill();
 
-		ctx.drawImage(muteImage,216,200);
+        ctx.drawImage(muteImage, 216, 200);
 
 
-		// MENU BUTTON 3
-		ctx.beginPath();
-		ctx.rect(336,180,120,120);
-		ctx.fillStyle = "rgb(184,182,182)";
-		ctx.fill();
+        // MENU BUTTON 3
+        ctx.beginPath();
+        ctx.rect(336, 180, 120, 120);
+        ctx.fillStyle = "rgb(184,182,182)";
+        ctx.fill();
 
-		ctx.drawImage(ngImage,356,205);
+        ctx.drawImage(ngImage, 356, 205);
 
-		highlight(selectedMenuButton, 56, 196-56, 120);
-		return;
+        highlight(selectedMenuButton, 56, 196 - 56, 120);
+        return;
 
-	}
+    }
 
-	if (bgReady) {
-		ctx.drawImage(bgImage, 0, 0);
-	}
+    if (bgReady) {
+        ctx.drawImage(bgImage, 0, 0);
+    }
 
-	if (heroReady) {
-		heroSprite.renderHero();
-	}
+    if (heroReady) {
+        heroSprite.renderHero();
+    }
 
-	if (coinReady) {
-		ctx.drawImage(coinImage, coin.x, coin.y);
-	}
+    if (coinReady) {
+        ctx.drawImage(coinImage, coin.x, coin.y);
+    }
 
-	if (enemyReady) {
-		for (i = 0; i < enemyCount; i++) { 
-    	enemySprite.renderEnemy(enemies[i].x, enemies[i].y);
-		}
+    if (enemyReady) {
+        for (i = 0; i < enemyCount; i++) {
+            enemySprite.renderEnemy(enemies[i].x, enemies[i].y);
+        }
 
-}
+    }
 
-	if (beastMode) {
-		// Indicate tesla bike mode
-		ctx.fillStyle = "rgb(255, 0, 0)";
-		ctx.font = "24px Helvetica";
-		ctx.textAlign = "Center";
-		ctx.textBaseline = "top";
-		ctx.fillText("TESLA BIKE MODE", canvas.width / 2 - 100, canvas.height / 2 - 125);
-	}
+    if (beastMode) {
+        // Indicate tesla bike mode
+        ctx.fillStyle = "rgb(255, 0, 0)";
+        ctx.font = "24px Helvetica";
+        ctx.textAlign = "Center";
+        ctx.textBaseline = "top";
+        ctx.fillText("TESLA BIKE MODE", canvas.width / 2 - 100, canvas.height / 2 - 125);
+    }
 
-	// Score
-	ctx.fillStyle = "rgb(0, 0, 0)";
-	ctx.font = "24px Helvetica";
-	ctx.textAlign = "left";
-	ctx.textBaseline = "top";
-	ctx.fillText("Coins caught: " + coinsCaught, 32, 32);
-	ctx.fillText("Best: " + best, 32, 64);
+    // Score
+    ctx.fillStyle = "rgb(0, 0, 0)";
+    ctx.font = "24px Helvetica";
+    ctx.textAlign = "left";
+    ctx.textBaseline = "top";
+    ctx.fillText("Coins caught: " + coinsCaught, 32, 32);
+    ctx.fillText("Best: " + best, 32, 64);
 };
 
 
