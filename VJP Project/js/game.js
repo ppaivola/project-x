@@ -119,6 +119,9 @@ function newGame() {
     enemies = [new Enemy(hero)];
     enemyCount = 0;
     gameOver = false;
+    beastMode = false;
+    beastUsed = false;
+
     keysDown = {};
     cancelAnimationFrame(requestID);
 
