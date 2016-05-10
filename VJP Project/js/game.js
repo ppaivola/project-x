@@ -42,7 +42,7 @@ var playImage = new Image();
 playImage.onload = function () {
 	playReady = true;
 };
-playImage.src = "images/playIcon.png";
+playImage.src = "images/playicon.png";
 
 // Newgame Icon
 var ngReady = false;
