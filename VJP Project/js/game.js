@@ -53,14 +53,19 @@
     };
     ngImage.src = "images/newgame.png";
 
-    // Mute Icon
+    // Mute Icons
     var muteReady = false;
     var muteImage = new Image();
     muteImage.onload = function() {
         muteReady = true;
     };
+    var unmuteReady = false;
+    var unmuteImage = new Image();
+    muteImage.onload = function() {
+        unmuteReady = true;
+    };
     muteImage.src = "images/muteicon.png";
-    //unmuteImage.src = "images/unmuteicon.png";
+    unmuteImage.src = "images/unmuteicon.png";
 
     // Audio files
     var audio = document.getElementById("audio");
@@ -68,15 +73,17 @@
     var gameOverAudio = document.getElementById("gameover");
     var themeMusic = document.getElementById("theme");
     var rideMusic = document.getElementById("riding");
-    
+    var muted = false;
+
     themeMusic.play();
     
     function muteAll() {
-        audio.muted = !audio.muted;
-        yeah.muted = !yeah.muted;
-        gameOverAudio.muted = !gameOverAudio.muted;
-        themeMusic.muted = !themeMusic.muted;
-        rideMusic.muted = !rideMusic.muted;
+        muted = !muted;
+        audio.muted = muted;
+        yeah.muted = muted;
+        gameOverAudio.muted = muted;
+        themeMusic.muted = muted;
+        rideMusic.muted = muted;
     }
 
     // Game state 
@@ -354,7 +361,8 @@
             ctx.fillStyle = "rgb(250,250,250)";
             ctx.fill();
 
-            ctx.drawImage(muteImage, 216, 200);
+            if(!muted) ctx.drawImage(muteImage, 216, 200);
+            else ctx.drawImage(unmuteImage, 216, 200);
 
 
             // MENU BUTTON 3
