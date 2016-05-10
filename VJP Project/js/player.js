@@ -1,7 +1,7 @@
 function Player(speed) {
     this.speed = speed;
 
-    this.beastSpeed = function() {
+    this.teslaSpeed = function() {
         this.speed = 400;
     };
 

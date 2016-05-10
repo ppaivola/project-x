@@ -86,8 +86,8 @@ var onPause = false;
 
 var selectedMenuButton = 0;
 var gameStarted = false;
-var beastMode = false;
-var beastUsed = false;
+var teslaMode = false;
+var teslaUsed = false;
 var movDir = "left";
 
 // Start the music
@@ -132,8 +132,8 @@ function newGame() {
     enemies = [new Enemy(hero)];
     enemyCount = 0;
     gameEnded = false;
-    beastMode = false;
-    beastUsed = false;
+    teslaMode = false;
+    teslaUsed = false;
     selectedMenuButton = 0;
     gameStarted = false;
 
@@ -184,7 +184,7 @@ addEventListener("keydown", function(e) {
     }
 
     if (e.keyCode === 32) { // space
-        console.log("Activate beast mode");
+        console.log("Activate tesla mode");
         modeOn();
     }
 
@@ -241,20 +241,20 @@ addEventListener("keyup", function(e) {
 
 // Tesla bike mode toggle
 function modeOn() {
-    if (beastUsed) return;
-    document.getElementById("beastMode").style.display = "none";
+    if (teslaUsed) return;
+    document.getElementById("teslaMode").style.display = "none";
     $("#normalMode").fadeIn("slow");
     yeah.play();
-    hero.beastSpeed();
-    beastMode = beastUsed = true;
+    hero.teslaSpeed();
+    teslaMode = teslaUsed = true;
     themeMusic.pause();
     rideMusic.play();
-    setTimeout(modeOff, 10E3); // Beast mode timeout
+    setTimeout(modeOff, 10E3); // tesla mode timeout
 }
 
 function modeOff() {
     hero.normalSpeed();
-    beastMode = false;
+    teslaMode = false;
     themeMusic.play();
     rideMusic.pause();
     //rideMusic.currentTime = 0;
@@ -262,7 +262,7 @@ function modeOff() {
 
 function reTesla() {
     document.getElementById("normalMode").style.display = "none";
-    $("#beastMode").fadeIn("slow");
+    $("#teslaMode").fadeIn("slow");
 }
 
 // Loadingscreen toggle
@@ -294,7 +294,7 @@ function update(modifier) {
 
         // Grant tesla bike mode in every 10 coins
         if (coinsCaught % 10 === 0) {
-            beastUsed = false;
+            teslaUsed = false;
             reTesla();
         }
 
@@ -312,7 +312,7 @@ function update(modifier) {
     for (i = 0; i < enemyCount; i++) {
         if (enemies[i].move(modifier)) {
             // Ignore collision in tesla bike mode
-            if (!beastMode) gameover();
+            if (!teslaMode) gameover();
         }
     }
 }
@@ -379,7 +379,7 @@ function render() {
     }
 
     if (heroReady) {
-        if (!beastMode) heroSprite.renderHero();
+        if (!teslaMode) heroSprite.renderHero();
         else if (movDir == "left") {
             bikeheroSpriteLeft.renderHero();
         } else  {
@@ -398,7 +398,7 @@ function render() {
 
     }
 
-    if (beastMode) {
+    if (teslaMode) {
         // Indicate tesla bike mode
         ctx.fillStyle = "rgb(255, 0, 0)";
         ctx.font = "24px Helvetica";
