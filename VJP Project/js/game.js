@@ -1,5 +1,5 @@
 // Create the canvas
-var canvas = document.getElementById("gameCanvas")
+var canvas = document.getElementById("gameCanvas");
 var ctx = canvas.getContext("2d");
 canvas.width = 512;
 canvas.height = 480;
@@ -64,17 +64,17 @@ muteImage.src = "images/muteicon.png";
 var play = function() {
 	var audio = document.getElementById("audio");
 	audio.play();
-}
+};
 
 var yeah = function() {
-	var yeah = document.getElementById("ohyeah")
+	var yeah = document.getElementById("ohyeah");
 	yeah.play();
-}
+};
 
 var gameover = function() {
-	var gameover = document.getElementById("gameover")
+	var gameover = document.getElementById("gameover");
 	gameover.play();
-}
+};
 
 
 // Game state 
@@ -94,7 +94,7 @@ var gameStarted = false;
 var newGame = function() {
 
 for (i = 0; i < enemyCount; i++) { 
-    	enemies[i] == null;
+    	enemies[i] = null;
 		}
 
 enemies = [new Enemy(hero)];
@@ -145,9 +145,9 @@ addEventListener("keydown", function (e) {
 		console.log("Pause pressed");
 	}
 
-	if (onPause && !(e.keyCode === 80) ) {
+	if (onPause && e.keyCode !== 80 ) {
 		if (e.keyCode === 37) { // left
-			if (selectedMenuButton == 0) selectedMenuButton = 2;
+			if (selectedMenuButton === 0) selectedMenuButton = 2;
 			else selectedMenuButton += -1;
 			}
 		if (e.keyCode === 39) { // right
@@ -201,24 +201,24 @@ var modeOn = function() {
 	yeah();
 	hero.beastSpeed();
 
-}
+};
 var modeOff = function() {
 	document.getElementById("normalMode").style.display = "none";
 	$("#beastMode").fadeIn("slow");
 	hero.normalSpeed();
 
-}
+};
 
 // Loadingscreen toggle
 var playGame = function() {
 	document.getElementById("loadScreen").style.display = "none";
 	$("#gameCanvas").fadeIn("fast");
 	gameStarted = true;
-}
+};
 
 var pauseGame = function() {
 	onPause = !onPause;
-}
+};
 
 // Update game objects
 var update = function (modifier) {
@@ -226,10 +226,10 @@ var update = function (modifier) {
 
 	// Check for collision with coin
 	if (
-		hero.x <= (coin.x + 32)
-		&& coin.x <= (hero.x + 32)
-		&& hero.y <= (coin.y + 32)
-		&& coin.y <= (hero.y + 32)
+		hero.x <= (coin.x + 32) &&
+		coin.x <= (hero.x + 32) &&
+		hero.y <= (coin.y + 32) &&
+		coin.y <= (hero.y + 32)
 	) {
 		++coinsCaught;
 		
@@ -317,7 +317,7 @@ var render = function () {
 	}
 
 	if (heroReady) {
-		heroSprite.renderHero()
+		heroSprite.renderHero();
 	}
 
 	if (coinReady) {

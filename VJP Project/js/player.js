@@ -3,11 +3,11 @@ function Player(speed) {
 
 	this.beastSpeed = function() {
 		this.speed = 400;
-	}
+	};
 
 	this.normalSpeed = function() {
 		this.speed = 256;
-	}
+	};
 
 	this.move = function(modifier) {
 
@@ -47,4 +47,4 @@ function Player(speed) {
 
 
 	};
-};
+}

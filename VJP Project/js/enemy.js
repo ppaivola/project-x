@@ -5,16 +5,16 @@ function Enemy(player) {
 	var atBottom = false;
 	var heading = Math.random();
 	
-	this.speed = ((Math.random() + 1) * 75)
+	this.speed = ((Math.random() + 1) * 75);
 	this.x = 32 + (Math.random() * (canvas.width - 64));
 	this.y = 32 + (Math.random() * (canvas.height - 64));
 	this.move = function(modifier) {
 	
 	if (
-		player.x <= (this.x + 26)
-		&& this.x <= (player.x + 26)
-		&& player.y <= (this.y + 26)
-		&& this.y <= (player.y + 26)
+		player.x <= (this.x + 26) &&
+		this.x <= (player.x + 26) &&
+		player.y <= (this.y + 26) &&
+		this.y <= (player.y + 26)
 	) {
 		return true;
 	}
@@ -53,4 +53,4 @@ function Enemy(player) {
 	}
 };
 
-};
+}

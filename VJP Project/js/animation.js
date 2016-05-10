@@ -1,7 +1,7 @@
 // SPRITE
 
  // Create the canvas
-var canvas = document.getElementById("gameCanvas")
+var canvas = document.getElementById("gameCanvas");
 //canvas.id = "gameCanvas";
 var ctx = canvas.getContext("2d");
 var lastTime = 0;							
