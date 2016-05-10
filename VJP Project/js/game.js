@@ -93,9 +93,9 @@ function gameover() {
     ctx.fillText("You failed to collect 100 coins.", canvas.width / 2 - 200, canvas.height / 2 + 50);
     ctx.fillText("Better luck next time!", canvas.width / 2 - 150, canvas.height / 2 + 100);
 
-    // TODO: Fix audio
-    //var gameover = document.getElementById("gameover");
-    //gameover.play();
+    
+    var gameover = document.getElementById("gameover");
+    gameover.play();
     gameOver = true;
 
     // Display game over for 3 seconds.
