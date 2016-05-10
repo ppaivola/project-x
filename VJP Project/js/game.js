@@ -4,6 +4,9 @@
 canvas.width = 512;
 canvas.height = 480;
 
+/**
+* Load Image assets
+*/
 // Background image
 var bgReady = false;
 var bgImage = new Image();
@@ -66,7 +69,9 @@ muteImage.onload = function() {
 muteImage.src = "images/muteicon.png";
 unmuteImage.src = "images/unmuteicon.png";
 
-// Audio files
+/**
+* Load audio assets
+*/
 var audio = document.getElementById("audio");
 var yeah = document.getElementById("ohyeah");
 var gameOverAudio = document.getElementById("gameover");
@@ -74,7 +79,10 @@ var themeMusic = document.getElementById("theme");
 var rideMusic = document.getElementById("riding");
 var muted = false;
 
-// Game state 
+
+/**
+* Game state
+*/
 var hero = new Player(256);
 var coin = {};
 var coinsCaught = 0;
@@ -93,15 +101,64 @@ var movDir = "left";
 // Start the music
 themeMusic.play();
 
-function muteAll() {
-    muted = !muted;
-    audio.muted = muted;
-    yeah.muted = muted;
-    gameOverAudio.muted = muted;
-    themeMusic.muted = muted;
-    rideMusic.muted = muted;
-}
 
+/*
+* Bind event listeners
+*/
+// Handle keyboard controls
+var keysDown = {};
+addEventListener("keydown", function(e) {
+    keysDown[e.keyCode] = true;
+    // Prevent window from scrolling
+    if (e.keyCode === 38 || e.keyCode === 40 || e.keyCode === 32 || e.keyCode == 37 || e.keyCode == 39 || e.keyCode == 80) {
+        e.preventDefault();
+    }
+    if (80 in keysDown) { // "P" - button pressed
+        pauseGame();
+        console.log("Pause pressed");
+    }
+
+    if (e.keyCode === 32) { // space
+        console.log("Activate tesla mode");
+        modeOn();
+    }
+
+    if (onPause && e.keyCode !== 80 && !gameEnded) {
+        if (e.keyCode === 37) { // left
+            if (selectedMenuButton === 0) selectedMenuButton = 2;
+            else selectedMenuButton += -1;
+        }
+        if (e.keyCode === 39) { // right
+            selectedMenuButton += 1;
+            selectedMenuButton = selectedMenuButton % 3;
+        }
+        if (e.keyCode === 13) { // enter
+            menuButtonAction(selectedMenuButton);
+        }
+        console.log(selectedMenuButton);
+    } else if (13 in keysDown && !gameEnded) {
+        pauseGame();
+        console.log("Pause pressed");
+    }
+
+    // Pressing any key will start the game
+    if (!gameStarted) playGame();
+}, false);
+
+
+addEventListener("keyup", function(e) {
+    delete keysDown[e.keyCode];
+
+    // Prevent window from scrolling
+    if (e.keyCode === 38 || e.keyCode === 40 || e.keyCode === 32 || e.keyCode == 37 || e.keyCode == 39 || e.keyCode == 80) {
+        e.preventDefault();
+    }
+}, false);
+
+
+/*
+* Game methods
+*/
 // Handler for game over
 function gameover() {
     ctx.font = "30px Arial";
@@ -169,77 +226,6 @@ function reset() {
     coin.y = 32 + (Math.random() * (canvas.height - 64));
 }
 
-
-// Handle keyboard controls
-var keysDown = {};
-
-addEventListener("keydown", function(e) {
-    keysDown[e.keyCode] = true;
-    // Prevent window from scrolling
-    if (e.keyCode === 38 || e.keyCode === 40 || e.keyCode === 32 || e.keyCode == 37 || e.keyCode == 39 || e.keyCode == 80) {
-        e.preventDefault();
-    }
-    if (80 in keysDown) { // "P" - button pressed
-        pauseGame();
-        console.log("Pause pressed");
-    }
-
-    if (e.keyCode === 32) { // space
-        console.log("Activate tesla mode");
-        modeOn();
-    }
-
-    if (onPause && e.keyCode !== 80 && !gameEnded) {
-        if (e.keyCode === 37) { // left
-            if (selectedMenuButton === 0) selectedMenuButton = 2;
-            else selectedMenuButton += -1;
-        }
-        if (e.keyCode === 39) { // right
-            selectedMenuButton += 1;
-            selectedMenuButton = selectedMenuButton % 3;
-        }
-        if (e.keyCode === 13) { // enter
-            menuButtonAction(selectedMenuButton);
-        }
-        console.log(selectedMenuButton);
-    } else if (13 in keysDown && !gameEnded) {
-        pauseGame();
-        console.log("Pause pressed");
-    }
-
-    // Pressing any key will start the game
-    if (!gameStarted) playGame();
-}, false);
-
-// Handle pause menu item actions
-function menuButtonAction(selectedMenuButton) {
-    switch (selectedMenuButton) {
-        case 0:
-            console.log("Resume");
-            onPause = false;
-            break;
-        case 1:
-            muteAll();
-            console.log("Mute: " + audio.muted);
-            break;
-        case 2:
-            console.log("Restart");
-            location.reload();
-            break;
-        default:
-            break;
-    }
-}
-
-addEventListener("keyup", function(e) {
-    delete keysDown[e.keyCode];
-
-    // Prevent window from scrolling
-    if (e.keyCode === 38 || e.keyCode === 40 || e.keyCode === 32 || e.keyCode == 37 || e.keyCode == 39 || e.keyCode == 80) {
-        e.preventDefault();
-    }
-}, false);
-
 // Tesla bike mode toggle
 function modeOn() {
     if (teslaUsed) return;
@@ -277,6 +263,57 @@ function pauseGame() {
     onPause = !onPause;
 }
 
+/**
+* Pause menu
+*/
+// Pause menu item higlights
+function highlight(selectedMenuButton, startX, buttonSpacing, sideLength) {
+    var buttonX = startX + selectedMenuButton * buttonSpacing;
+    var buttonY = 180;
+
+    ctx.beginPath();
+    ctx.moveTo(buttonX, buttonY);
+    ctx.lineTo(buttonX, buttonY + sideLength);
+    ctx.lineTo(buttonX + sideLength, buttonY + sideLength);
+    ctx.lineTo(buttonX + sideLength, buttonY);
+    ctx.lineTo(buttonX, buttonY);
+    ctx.lineWidth = 10;
+    ctx.strokeStyle = "yellow";
+    ctx.stroke();
+}
+
+// Handle pause menu item actions
+function menuButtonAction(selectedMenuButton) {
+    switch (selectedMenuButton) {
+        case 0:
+            console.log("Resume");
+            onPause = false;
+            break;
+        case 1:
+            muteAll();
+            console.log("Mute: " + audio.muted);
+            break;
+        case 2:
+            console.log("Restart");
+            location.reload();
+            break;
+        default:
+            break;
+    }
+}
+
+function muteAll() {
+    muted = !muted;
+    audio.muted = muted;
+    yeah.muted = muted;
+    gameOverAudio.muted = muted;
+    themeMusic.muted = muted;
+    rideMusic.muted = muted;
+}
+
+/*
+* Draw and update loops
+*/
 // Update game objects
 function update(modifier) {
     if (onPause) return;
@@ -316,22 +353,6 @@ function update(modifier) {
             if (!teslaMode) gameover();
         }
     }
-}
-
-// Pause menu item higlights
-function highlight(selectedMenuButton, startX, buttonSpacing, sideLength) {
-    var buttonX = startX + selectedMenuButton * buttonSpacing;
-    var buttonY = 180;
-
-    ctx.beginPath();
-    ctx.moveTo(buttonX, buttonY);
-    ctx.lineTo(buttonX, buttonY + sideLength);
-    ctx.lineTo(buttonX + sideLength, buttonY + sideLength);
-    ctx.lineTo(buttonX + sideLength, buttonY);
-    ctx.lineTo(buttonX, buttonY);
-    ctx.lineWidth = 10;
-    ctx.strokeStyle = "yellow";
-    ctx.stroke();
 }
 
 // Draw everything
@@ -416,7 +437,6 @@ function render() {
     ctx.fillText("Coins caught: " + coinsCaught, 32, 32);
     ctx.fillText("Best: " + best, 32, 64);
 }
-
 
 
 // Cross-browser support for requestAnimationFrame
