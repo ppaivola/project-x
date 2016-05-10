@@ -330,8 +330,8 @@ function update(modifier) {
     ) {
         ++coinsCaught;
 
-        // Grant tesla bike mode in every 10 coins
-        if (coinsCaught % 10 === 0) {
+        // Grant tesla bike mode in every 15 coins
+        if (coinsCaught % 15 === 0) {
             teslaUsed = false;
             reTesla();
         }
