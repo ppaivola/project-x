@@ -1,0 +1,66 @@
+body {
+	background-image: url("bg.png");
+	color: #191919;
+	font-size: 87.5%;
+	font-family: 'Open Sans', sans-serif;
+	line-height: 1.5;
+	text-align: left;
+	margin: 0 auto;
+	width: 65%;
+	clear: both;
+}
+
+a {
+	text-decoration:  none;
+	color: inherit;
+
+}
+
+#article1, #article2, #article3 {
+	background-color: #FFF;
+	line-height: 25px;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	margin-top: 2%;
+	overflow: hidden;
+	padding: 2%;
+	display: none;
+}
+
+
+#Snav {
+	background-color: #191919;
+	padding: 2%;
+	display: block;
+	color: #FFF;
+	height: 40px;
+
+}
+
+#Sleft, #Sright, #Splay, #Spause {
+    font-size: 200%;
+    color: #FFF;
+    display: block;
+    position: absolute;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+#Sleft { left: 20%; }
+#Sright { right: 20%; }
+
+#Splay, #Spause {
+	font-size: 300%;
+	line-height: 1.0;
+	left: 49%;
+}
+
+#Splay {
+	display: none;
+}
+
+#Spause {
+	line-height: 2.8;
+	font-size: 100%;
+}

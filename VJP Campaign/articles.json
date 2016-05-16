@@ -1,0 +1,15 @@
+{
+	"articles": [{
+		"header":"Otsikko yksi",
+		"date":"02.08.1994",
+		"content":"LoremipsumLoremipsumLoremipsumLoremipsumLoremipsum"
+	}, {
+		"header":"Otsikko kaksi", 
+		"date":"23.06.2013", 
+		"content": "LoremipsumiaLoremipsumiaLoremipsumiaLoremipsumiaLoremipsumia"
+	}, {
+		"header":"Otsikko kolme", 
+		"date":"21.12.2012", 
+		"content": "JavieläloremipsumJavieläloremipsumJavieläloremipsumJavieläloremipsum"
+	}]
+}

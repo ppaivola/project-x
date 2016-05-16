@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Font -->
+	<link href='https://fonts.googleapis.com/css?family=Archivo+Narrow' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<!-- End font-->
+	
+	<title>Oulun kaupunki, Tesla Motors & Über - Päästötön Oulu</title>
+
+	<meta charset="utf-8" />
+	<meta name="description" content="Viestintä II & VJP project">
+	<meta name="keywords" content="HTML,CSS,JavaScript">
+	<meta name="author" content="Pyry Päivölä">
+	<!-- Responsive display -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- End Responsive Display -->
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+	<link rel="newsStyle" href="css/design.css" />
+    <script src="js/newsFeed.js"></script>
+    <script src="js/jQuery.js"></script>
+    <script src="js/jquery-2.2.0.min.js"></script>
+	<script src="js/jquery.cycle2.min.js"></script>
+	<script src="js/indexJS.js"></script>
+
+</head>
+
+<body class="body" onload="getContent()">
+		
+	<header class="mainHeader">
+
+		<nav>
+			<ul>
+				<li><a href="#home">HOME</a> </li>
+				<li><a href="#news">UUTISET</a> </li>
+				<li><a href="#about">TIETOJA</a> </li>
+				<li><a href="#contact">YHTEYSTIEDOT</a> </li>
+				<!-- Searchbox -->
+				<li class="container">
+					  <div>
+					  	<form class="searchbox">
+					    <input type="search" placeholder="" name="search" class="searchbox-input" onkeyup="buttonUp();" required>
+					    <input type="submit" class="searchbox-submit" value="&#128269;">
+					    <span class="searchbox-icon">	&#128269;</span>
+					  	</form>
+					  </div>
+				</li>
+				<!-- End SearchBox -->
+			</ul>
+				
+			<div class="handle">MENU
+				<div class="icon">&#9776;</div>
+			</div>
+			<!-- Nav script -->
+			<script type="text/javascript"> 
+			$('.handle').on('click', function(){
+				$('nav ul').toggleClass('showing');
+			});
+			</script>
+			<!-- End Nav Script -->
+		</nav>
+	</header>
+
+	<!-- Back to top link -->
+	<a id="home" class="smooth"></a>
+
+	<!-- Responsive Image Slider -->
+	<div class="cycle-slideshow"> 
+		<span class="cycle-prev">&#9001;</span>
+		<span class="cycle-next">&#9002;</span>
+		<span class="cycle-pager"></span>
+		<img src="images/1.jpg" alt="Ensimmäinen Kuva">
+		<img src="images/2.jpg" alt="Toinen Kuva">
+		<img src="images/3.jpg" alt="Kolmas Kuva">
+	</div>
+	<!-- End Responsive Image Slider -->
+
+	<section class="topWrapper"> 
+		<div class="topCol topCol1">
+			<h3>CO2-päästötön julkinen liikenne </h3>
+			<img src="images/eco.png" alt="This should be an Eco icon" />
+			<h4>Virtaa antaa Tesla Powerwall</h4>
+		</div>
+
+		<div class="topCol topCol2">
+			<h3>Maanalaiset polkupyörävarastot</h3>
+			<img src="images/bicycleicon.png" alt="This should be an Bicycle icon" />
+			<h4>Pitävät pyöräsi turvassa & katukuvan kauniina</h4>
+		</div>
+		<div class="topCol topCol3">
+			<h3>Lämmitetyt pyörätiet</h3>
+			<img src="images/heaticon.png" alt="This should be an Ecocar icon" />
+			<h4>Jotta voisit nauttia pyöräilystä 24/7</h4>
+		</div>
+
+	</section>
+
+	<main class="mainArticle">
+		<h2>Subarktista Eco-kaupunkia rakentamassa</h2>
+		<article>
+			 <p>Euroopan Unioni on päättänyt taistella ilmastonmuutosta vastaan asettamalla korkeat hiilipohjaiset verot kaikkiin jäsenmaihin vuonna 2025. Oulun kaupunki päätti ottaa tämän haasteen vastaan ja mullistaa koko julkisen liikenteen järjestelmänsä. Pilotin tavoitteena on vähentää hiilidioksidipäästöjä antamalla yksityisautoilulle parempi vaihtoehto kuin nykyinen joukkoliikennejärjestelmä. Uusi järjestelmä tulee käyttöön vuoden 2020 tammikuussa.</p>
+			 <p>Kampanja toteutetaan yhteistyössä Teslan ja Überin kanssa. Molemmat yritykset tarjoavat kaikki parhaat innovaationsa ja teknologiansa kaupungin uudistustyöhön, Oulun tarjotessa heille todellinen "Pohjoinen erikoiskoe" tuotetestausta ja -kehitystä varten. Tämä kolmen liitouma on sitoutunut paitsi uudistamaan kaupungin julkisen liikenteen, mutta myös uudistamaan Oulun identiteettiä perinteitä kunnioittaen. 
+			 <p>Pohjoinen Oulu on suomalaisen luonnon ympäröimä ja ulkoilu - erityisesti pyöräily - on keskeisessä roolissa sen asukkaiden elämässä. Tätä tuetaan asentamalla Oulun keskustaan kilometreittäin lämmitettyjä pyöräteitä, jotta kulku pyörällä helpottuu kaikkina vuodenaikoina. Kaupungin tarvitsema sähköenergia saadaan Teslan Powerwalleista sekä valmistuvasta Olkiluoto III- ydinvoimalasta. 
+			 <p>Oulu tunnetaan myös teknologiakaupunkina ja nuorekkaassa kaupungissa sijaitsee esimerkiksi Suomen toiseksi suurin yliopisto. Uutta teknologiaa Ouluun tuodaan mm. uusien autonomisten ÜberTeslojen muodossa, jotka korvaavat vanhat taksit. </p>
+			 <p>Kun pilotti onnistuu Oulun hankalassa ilmastossa, se voidaan toteuttaa myös missä tahansa muussa kaupungissa. Osallistu, seuraa ja ole mukana rakentamassa parempia kaupunkeja! </p>
+		 </article>
+	</main>
+
+	<div class="gameHeader">
+			<h2><a href="peli.html">KLIKKAA TÄSTÄ PELATAKSESI "I SKIP LEG DAY"- PELIÄ JA VOITA MODEL B - SÄHKÖPYÖRÄ!</a></h2>
+	</div>
+
+	<div class="videoFrame">	
+		<video width="100%" controls poster="images/poster.png">
+		  <source src="videos/VJP.mp4" type="video/mp4">
+		  <source src="videos/VJP.webm" type="video/webm">
+		  <source src="videos/VJP.ogv" type="video/ogv">
+		  Your browser does not support HTML5 video.
+		</video>
+	</div>
+
+	<section class="middleWrapper">
+			<ul>
+				<li class="slogan">
+						<p>SEURAA MEITÄ SOMESSA #SHOCKTHECITY</p>
+				</li>
+				<li class="iconWrap">
+						<div class="some"><a href="images/facebooksivu.png"><img src="images/fb.png" alt="Error"></a></div>
+						<div class="some"><a href="images/twittersivu.png"><img src="images/tw.png" alt="Error"></a></div>
+						<div class="some"><a href="images/instasivu.png"><img src="images/ig.png" alt="Error"></a></div>
+				</li>
+			</ul>
+	</section>
+
+
+	<section class="someBar">
+			<ul>
+				<li class="someIcons">
+						<div class="some"><a href="http://www.facebook.com"><img src="images/fb.png" alt="Error"></a></div>
+						<div class="some"><a href="http://www.twitter.com"><img src="images/tw.png" alt="Error"></a></div>
+						<div class="some"><a href="http://www.instagram.com"><img src="images/ig.png" alt="Error"></a></div>
+				</li>
+			</ul>
+	</section>
+	
+	<section class="secondaryContent"> 
+		<div class="col col1">
+			<img src="images/lowimg.png" alt="Alakuva">
+		</div>
+
+		<div class="col col2">
+			<img src="images/teslatext.png" alt="Error">
+			<h2>Model B sähköpolkupyörä</h2>
+			<p>Kulje fiksummin ja tyylikkäästi - Esittelyssä Tesla Model B.</p>
+			<p>Model B -sähköpyörät voi vuokrata pilotin ensimmäisenä kuukautena ilmaiseksi kaikista maanalaisista pyörien säilöntä- ja vuokrauspisteistä. Tämän jälkeen vuokramaksu suoritetaan matkakortilla.</p>
+			<p>Pyörän pieni, mutta tehokas 7D-moottori takaa ajajalle kepeän, vaivattoman ja nautinnollisen ajokokemuksen Oulun lämmitetyillä pyöräteillä ympäri vuoden. </p>
+		</div>
+	</section>
+
+	<section class="secondaryContent"> 
+		<div class="col col3">
+			<img src="images/ubertext.png" alt="Error">
+			<h2>Autonominen ÜberTesla -kuljetus</h2>
+			<p>Koko kaupunki sormenpäittesi ulottuvilla<p>
+			<p>Täysin sähköisten ÜberTesla -ajoneuvojen päivystysalue kattaa koko kaupungin Rotuaarilta Liuskolle. Kyyti tilataan älypuhelimella tai kiinteästä tilauspisteestä, jonka jälkeen sinut noutaa täysin itseohjautuva ÜberTesla -ajoneuvo! Halutessasi voit myös tilata perinteisen Tesla-auton, jonka kuljettaja avustaa sinua erityistarpeissasi.<p>
+			<p>Älykäs käyttödataan perustuva automaattinen reittisuunnittelu takaa autojen saatavuuden, oli kyseessä sitten koko kaupungin torijuhla tai hiljainen tiistai-ilta. ÜberTeslat vastaavat kaikista kunnan järjestämistä kuljetuksista. Myös bussiliikene on täysin sähköistetty - tuttuja ja uusia reittejä ajaa Tesla Bus- ajoneuvot.</p>
+		</div>
+
+		<div class="col col4">
+			<img src="images/low2mg.jpg" alt="Alakuva">
+		</div>
+	</section>
+
+		<section class="topWrapper"> 
+		<div class="topCol topCol4">
+			<a href="images/centremap.png">
+				<img src="images/centresnap.png" alt="This should be an Eco icon" />
+			</a>
+		</div> 
+
+
+		<div class="topCol topCol5">
+			<h3>Uusittu keskusta & Vyöhykekartta</h3>
+			<p>Osana julkisen liikenteen sähköistämistä kaupunki on jaettu kolmeen uuteen vyöhykkeeseen, jotka on nimetty Pohjoista identiteettiä kuvaavin nimin. Rusko- ja Liusko-vyöhkkeillä julkinen liikenne koostuu ÜberTesla -päivystyksestä ja Teslan sähköbusseista, jotka noudattavat osin vanhojen tuttujen bussilinjojen reittejä.<p>
+
+			<p>Pilotti-hankkeen surimmat muutokset näkyvätkin keskustanalueen Rotuaari-vyöhykkeellä, jonne avataan monta kymmentä kilometriä Tesla PowerWall- aurinkokennojen ja Olkiluoto III:n tuottamalla energialla lämmitettyä pyörätietä. Tämän lisäksi keskustaan rakennetaan kymmenkunta maanalaista polkupyörien säilöntä- ja vuokrauspitettä.</p>
+		</div>
+		<div class="topCol topCol6">
+			<a href="images/areasmap.png">
+				<img src="images/areasnap.png" alt="This should be an Ecocar icon" />
+			</a>
+		</div>
+
+	</section>
+	
+	<div class="newsHeader">
+			<a id="news" class="smooth"></a>
+			<h2>UUTISET</h2>
+	</div>
+
+	<section class="newsFeed">  
+    <div id="article1">
+    	<article id="newsOne"> <!-- JSON text will appear here --> </article>
+    </div>
+ 	
+ 	<div id="article2">
+    	<article id="newsTwo"> <!-- JSON text will appear here --> </article>
+    </div>
+
+    <div id="article3">
+    	<article id="newsThree"> <!-- JSON text will appear here --> </article>
+    </div>
+
+    <!-- Slider navigation bar -->
+    <div id="Snav">
+    	<span id="Sleft" onclick="prev()">&#9001;</span>
+		<span id="Sright" onclick="next()">&#9002;</span>
+		<span id="Splay" onclick="play()">&#9654;</span>
+		<span id="Spause" onclick="pause()">&#9616;&#9616;</span>
+    <div>
+ </section>
+
+
+	<div class="aboutHeader">
+		<a id="about" class="smooth"></a>
+		<h2>TIETOJA</h2>
+	</div>
+
+	<section class="mainAboutWrapper">
+		<div class="aboutMainImage">
+			<img src="images/aboutMain.png" alt="Sorry, couldn't load the picture">
+		</div>
+		<div class="aboutMainText">
+			<h1>Ympäristövastuullinen kaupunki</h1>
+			<p>Tavoitteena parempi, hiilidioksidipäästötön tulevaisuus.<p>
+			<p>Ilmastonmuutoksen pahentuessa ja Euroopan Unioninn asettaessa uusia veroja, on tärkeää pohtia uudelleen hiilipäästöjä ja niiden vaikutusta luonnolle. Hiilidioksidipäästöjen vähentäminen säästää rahaa, ja turvaa Oulun monipuolisen luonnon säilymisen seuraaville sukupolville. </p>
+			<p>Projektimme tarkoituksena on ohjata ihmisiä tekemään ympäristön kannalta kestävämpiä ratkaisuja ja helpottaa niiden valitsemista, ja siksi suosimmekin perinteisiä - mutta parempia - joukkoliikennevälineitä.</p>
+		</div>
+	</section>
+
+
+	<section class="aboutWrapper"> 
+		<div class="aboutImage">
+			<img src="images/aboutone.jpg" alt="Sorry, couldn't load the picture">
+		</div>
+		<div class="aboutText">
+			<h2>Kolme yritystä - yksi yhteinen tavoite</h2>
+			<p>Oulun kaupunki tekee yhteistyötä Tesla Motorsin, Uber Technologies Inc.:n ja Teollisuuden Voima Oyj:n kanssa saadakseen pilotille parhaan mahdollisen lopputuloksen. Tesla Motorsin valmistamat PowerWall-aurinkokennot yhdessä TVO:n Olkiluoto III:n kanssa tuottavat riittävästi puhtaampaa energiaa lämmittämään pyöräteitä ja liikuttamaan kaupungin julkista liikennettä.<p>
+			<p>Lisäksi Tesla tuottaa sähköautoja, -busseja ja -pyöriä, joita käytetään helpottamaan ihmisten liikkumista paikasta toiseen ilman yksityisautoa. Uber Technologies Inc. tuottaa kuljetuspalvelun vaatiman sovelluksen, jonka kautta asiakkaat saavat helposti tilattua kulkuneuvon käyttöönsä vyöhykkeiden sisällä.</p>
+		</div>
+	</section>
+
+	<section class="aboutWrapper"> 
+		<div class="aboutImage">
+			<img src="images/abouttwo.jpg" alt="Sorry, couldn't load the picture">
+		</div>
+		<div class="aboutText">
+			<h2>Mitataan onnistumista</h2>
+			<p>Pilotin onnistumista mitataan käyttäjien tyytyväisyyden sekä hiilidioksidipäästöjen vähenemisen kannalta. Koska uskomme pyörien säilyvän paremmin maanalaisissa säiliöissä, tarkkailemme myös kaupungin metallijätteen määrää. Käyttäjätyytyväisyyttä tutkitaan kyselyjen avulla asentamalla pyöränsäilytyspisteille helpot laitteet nopean palautteen antamiseksi. Riittää, että painaa yhtä painiketta, joka kuvaa omaa tyytyväisyyttä palveluun. </p>
+			<p>Tyytyväisyyttä ÜberTesla -kuljetuksiin mitataan lyhyellä kyselyllä, jonka Über lähettää asiakkaalle kyydin jälkeen. Palkinnoksi avunannosta, tarjoamme kyselyihin vastaajille ilmaisia kyytejä! <p>
+		</div>
+	</section>
+
+	<section class="aboutWrapper"> 
+		<div class="aboutImage">
+			<img src="images/aboutthree.jpg" alt="Sorry, couldn't load the picture">
+		</div>
+		<div class="aboutText">
+			<h2>Pyöräsi turvallisuuden ja kauniimman katukuvan puolesta</h2>
+			<p>Maanalaiset pyöränsäilytyspisteet pitävät pyöräsi turvassa ja puhtaana sekä katukuvan siistinä. Säilytyspisteessä voit säilyttää omaa pyörääsi sekä vuokrata tai palauttaa Teslan Model B- sähköpyörän.</p>
+			<p>Pyörän vuokraaminen tehdään helpoksi sijoittamalla säilytyspisteet keskeisille paikoille lämmitettyjen pyöräteiden varrelle. Pyörää ei myöskään tarvitse palauttaa samaan pisteeseen kuin mistä se on vuokrattu vaan pyörän voi palauttaa mihin tahansa säilytyspisteistä.</p>
+		</div>
+	</section>
+
+	<div class="contactHeader">
+		<a id="contact" class="smooth"></a>
+		<h2>YHTEYSTIEDOT</h2>
+	</div>
+
+	<footer class="mainFooter">
+
+		<!-- Contact menu link -->
+		
+
+		<div itemscope itemtype="http://data-vocabulary.org/Organization"> 
+			<h3 itemprop="name">Päästötön Oulu- kampanja</h3> 
+			<div itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
+			 &#128205;
+			<span itemprop="street-address">Ouluntie 7</span>, 
+			<span itemprop="locality">Oulu</span>, 
+			<span itemprop="region">Oulunlääni</span> 
+			<span itemprop="postal-code">90014</span>
+			| &#128231; <a href="mailto:identity@oulu.fi" itemprop="email">identity@oulu.fi</a>
+			| &#128222; <span itemprop="tel">09-1234567</span>
+			</div>
+			<span itemprop="geo" itemscope itemtype="http://www.data-vocabulary.org/Geo/"
+			style="display:none">
+			    <span itemprop="latitude">65.01 N</span>  
+			    <span itemprop="longitude">25.28 E</span>  
+			</span>  
+		</div>
+		<p>Oulu City powered by Tesla Motors, Uber Technologies Inc. & TVO Olkiluoto 3</p>
+		<img class="sponsor" src="images/teslatext.png">
+		<img class="sponsor" src="images/ubertext.png">
+		<img class="sponsor" src="images/olkiluototext.png">
+	</footer>
+	<!-- Contact Anchor link -->
+	<a id="contact" class="smooth"></a>
+
+</body>
+
+</html>
