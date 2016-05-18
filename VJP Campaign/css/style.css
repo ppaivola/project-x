@@ -335,13 +335,13 @@ nav ul li:hover {
 	overflow: hidden;
 }
 
-.topCol2, .topCol3, .topCol5, .topCol6 {
+.topCol2, .topCol3, .topCol6 {
 	margin-left: 2%;
 	width: 30%;
 }
 
-.topCol6 {
-	width: 33%;
+.topCol6, .topCol4 {
+	width: 50%;
 }
 .topCol4 img, .topCol6 img {
 	width: 100%;
@@ -474,10 +474,10 @@ nav ul li:hover {
 
 .aboutMainText {
 	text-align: center;
-	width: 100%;
+	width: 98%;
 	float: left;
 	margin: 0;
-	padding: 0;
+	padding: 1% 1%;
 }
 
 

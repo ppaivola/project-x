@@ -30,7 +30,7 @@
 	};
 
 	var nrSlides = 3; // The number of slides/articles
-  var IntSeconds = 7; // Set the interval for slide change in seconds
+  var IntSeconds = 99999999999; // Set the interval for slide change in seconds
   var nrShown = 0;
 
   /** Gathers information of where the slideshow was left-off from the local storage, if possible */
